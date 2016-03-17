@@ -1,49 +1,76 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Insp3ct by paulomcnally</title>
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-dark.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/respond.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" href="stylesheets/ie.css">
-    <![endif]-->
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <title>Insp3ct by paulomcnally</title>
+  <link rel="stylesheet" href="stylesheets/styles.css">
+  <link rel="stylesheet" href="stylesheets/github-dark.css">
+  <link rel="stylesheet" href="stylesheets/sh.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script src="javascripts/respond.js"></script>
+  <!--[if lt IE 9]>
+  <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+  <!--[if lt IE 8]>
+  <link rel="stylesheet" href="stylesheets/ie.css">
+  <![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
-  </head>
-  <body>
-      <div id="header">
-        <nav>
-          <li class="fork"><a href="https://github.com/paulomcnally/insp3ct">View On GitHub</a></li>
-          <li class="downloads"><a href="https://github.com/paulomcnally/insp3ct/zipball/master">ZIP</a></li>
-          <li class="downloads"><a href="https://github.com/paulomcnally/insp3ct/tarball/master">TAR</a></li>
-          <li class="title">DOWNLOADS</li>
-        </nav>
-      </div><!-- end header -->
+</head>
+<body onload="sh_highlightDocument();">
+  <div id="header">
+    <nav>
+      <li class="fork"><a href="https://github.com/paulomcnally/insp3ct">View On GitHub</a></li>
+      <li class="downloads"><a href="https://github.com/paulomcnally/insp3ct/raw/master/insp3ct_1.0_all.deb">DEB</a></li>
+      <li class="title">DOWNLOADS</li>
+    </nav>
+  </div><!-- end header -->
 
-    <div class="wrapper">
+  <div class="wrapper">
 
-      <section>
-        <div id="title">
-          <h1>Insp3ct</h1>
-          <p>Identify intruders change files in git projects</p>
-          <hr>
-          <span class="credits left">Project maintained by <a href="https://github.com/paulomcnally">paulomcnally</a></span>
-          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
-        </div>
+    <section>
+      <div class="title">
+        <h1>Insp3ct</h1>
+        <p>Identify intruders change files in git projects</p>
+        <hr>
+      </div>
 
-        <h3>
-<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h3>
-      </section>
-
-    </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-    
-  </body>
+      <h3>
+        <a id="install" class="anchor" href="#installation" aria-hidden="true">
+          <span aria-hidden="true" class="octicon octicon-link"></span>
+        </a>
+        Install
+      </h3>
+      <pre class="sh_sh">
+        <code>
+$ wget https://github.com/paulomcnally/insp3ct/raw/master/insp3ct_1.0_all.deb
+$ sudo dpkg -i insp3ct_1.0_all.deb
+        </code>
+      </pre>
+      <h3>
+        <a id="configuration" class="anchor" href="#installation" aria-hidden="true">
+          <span aria-hidden="true" class="octicon octicon-link"></span>
+        </a>
+        Configuration
+      </h3>
+      <pre class="sh_sh">
+        <code>
+$ sudo vi /etc/default/insp3ct.cfg
+        </code>
+      </pre>
+      <div>
+        To get a key from mailgun visit: <a href="https://mailgun.com/signup" target="_blank">https://mailgun.com/signup</a>
+      </div>
+      <hr>
+      <div class="title">
+        <span class="credits left">Project maintained by <a href="https://github.com/paulomcnally">paulomcnally</a></span>
+        <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+      </div>
+    </section>
+  </div>
+  <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+  <script src="javascripts/sh_main.js"></script>
+  <script src="javascripts/sh_sh.min.js"></script>
+</body>
 </html>
