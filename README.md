@@ -3,7 +3,7 @@ Identify intruders change files in git projects
 
 **Note:** The project to inspect require git.
 
-When a hacker violates a wordpress website (for example) raises shell for better control files and thus make a deface.
+When a hacker violates a [WordPress](https://wordpress.org/) website (for example) raises [shells](http://www.dcvi.net/) for better control files and thus make a [deface](https://en.wikipedia.org/wiki/Website_defacement).
 
 That's why it's a good idea to identify modified or created file to the hacker.
 
