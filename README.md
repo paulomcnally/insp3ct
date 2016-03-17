@@ -1,5 +1,11 @@
-# inspect
+# insp3ct
 Identify intruders change files in git projects
+
+**Note:** The project to inspect require git.
+
+When a hacker violates a wordpress website (for example) raises shell for better control files and thus make a deface.
+
+That's why it's a good idea to identify modified or created file to the hacker.
 
 ## Install
 
@@ -9,5 +15,12 @@ Identify intruders change files in git projects
 ## Configuration
 
     $ sudo vi /etc/default/insp3ct.cfg
+
+## Crontab example
+
+    $ crontab -e
+
+    # every 5 minutes
+    */5 * * * * /usr/bin/insp3ct /var/www/html/wordpress
 
 To get a key from mailgun visit: https://mailgun.com/signup
