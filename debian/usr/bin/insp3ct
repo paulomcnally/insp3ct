@@ -106,7 +106,10 @@ if [ "$#" -eq  "0" ]
   error_message "Project path is required!"
 else
   cd $1
-  if git status --porcelain>/dev/null; then
+  if git status | grep "nothing to commit" >/dev/null 2>&1
+    then
+    success_message "All ok!"
+  else
     send_mail `pwd` `git status -u -s 2>/dev/null| grep -E "^??|^M" | awk '{print $2}' | tr '\n' ','`
   fi
 fi
