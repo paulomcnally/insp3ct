@@ -1,0 +1,112 @@
+#!/bin/bash
+# Insp3ct. Copyright (c) 2016, Paulo McNally
+# Version 1.0
+config=/etc/default/insp3ct.cfg
+
+
+# error message
+error_message () {
+  echo -e "\e[31m✗ $1"
+}
+
+# success message
+success_message () {
+  echo -e "\e[32m✓ $1"
+}
+
+# check if the dependencies exists
+check_dependency () {
+  program="$1"
+  condition=$(which $program 2>/dev/null | grep -v "not found" | wc -l)
+  if [ $condition -eq 0 ] ; then
+    error_message "$program is required!"
+    exit 0
+  fi
+}
+
+# check if configuration file have set values
+check_config () {
+  # check if config file exists
+  if [ ! -f $config ]; then
+    error_message "$config don't exists!"
+    exit 0
+  fi
+}
+
+check_config_values () {
+  # check value
+  if [ -z "$mailgun_key" ]; then
+    error_message "Set value mailgun_key into $config";
+    exit 0
+  fi
+
+  # check value
+  if [ -z "$mailgun_api_base_url" ]; then
+    error_message "Set value mailgun_api_base_url into $config";
+    exit 0
+  fi
+
+  # check value
+  if [ -z "$email_from" ]; then
+    error_message "Set value email_from into $config";
+    exit 0
+  fi
+
+  # check value
+  if [ -z "$email_to" ]; then
+    error_message "Set value email_to into $config";
+    exit 0
+  fi
+
+  # check value
+  if [ -z "$email_subject" ]; then
+    error_message "Set value email_subject into $config";
+    exit 0
+  fi
+}
+
+# check dependencies
+check_dependency git
+check_dependency curl
+
+# check config
+check_config
+
+# load config file
+. /etc/default/insp3ct.cfg
+
+# check if values is isset
+check_config_values
+
+# send email
+send_mail () {
+  #path based pwd
+  path="$1"
+  status="$2"
+
+  # ip address
+  host=`ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/'`
+
+  # time
+  date_time=`date '+%d/%m/%Y %H:%M:%S'`
+
+  # send email with curl
+  curl -s --user "api:$mailgun_key" \
+  "$mailgun_api_base_url/messages" \
+  -F from="$email_from" \
+  -F to="$email_to" \
+  -F subject="$email_subject" \
+  -F text="Path: ${path}\nHost: ${host}\nFiles affected: ${status}\nDate: ${date_time}" \
+  -F html="Path: ${path} <br/>Host: ${host} <br/>Files affected: ${status} <br/>Date: ${date_time}">/dev/null
+  success_message "Notified! ${date_time}"
+}
+
+if [ "$#" -eq  "0" ]
+  then
+  error_message "Project path is required!"
+else
+  cd $1
+  if git status --porcelain>/dev/null; then
+    send_mail `pwd` `git status -u -s 2>/dev/null| grep -E "^??|^M" | awk '{print $2}' | tr '\n' ','`
+  fi
+fi

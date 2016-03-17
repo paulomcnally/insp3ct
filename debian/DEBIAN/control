@@ -1,0 +1,10 @@
+Package: insp3ct
+Version: 1.0
+Section: base
+Priority: optional
+Architecture: all
+Depends: curl, git
+Maintainer: Paulo McNally <paulomcnally@gmail.com>
+Installed-Size: 2048
+Homepage: http://paulomcnally.github.io/insp3ct/
+Description: Identify intruders change files in git projects.
